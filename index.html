@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ludopapp — Proviamo a fare 13?</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      background-color: #f3efe0;
+      color: #3c3c3c;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      font-size: 2em;
+      color: #d33682;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1.1em;
+      background-color: #268bd2;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2aa198;
+    }
+    #frase {
+      margin-top: 20px;
+      font-style: italic;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎰 Ludopapp</h1>
+  <p>Clicca il bottone per tentare la fortuna!</p>
+  <button onclick="generaFrase()">Proviamo a fare 13?</button>
+  <div id="frase">💬 Qui comparirà la saggezza del bar...</div>
+
+  <script>
+    const frasi = [
+      "‘A speranz’ è l’ultima a murì",
+      "Si nun tiri, nun segni",
+      "Comme dicev’ mio nonno: ‘O banco vince sempe",
+      "Stamm’ senza pensier",
+      "Mo vene ‘o meglio colpo!",
+      "Nun se sa mai, magari oggi è ‘o juorno bbuono"
+    ];
+
+    function generaFrase() {
+      const casuale = frasi[Math.floor(Math.random() * frasi.length)];
+      document.getElementById("frase").innerText = "💬 " + casuale;
+    }
+  </script>
+</body>
+</html>
