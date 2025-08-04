@@ -5,38 +5,64 @@
   <title>Ludopapp — Proviamo a fare 13?</title>
   <style>
     body {
+      margin: 0;
       font-family: 'Courier New', monospace;
-      background-color: #f3efe0;
-      color: #3c3c3c;
+      color: #fff;
       text-align: center;
-      padding: 30px;
+      padding-top: 60px;
+      background-image: url('URL_DA_SOSTITUIRE_CON_IMMAGINE_FINAL');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
     }
+
     h1 {
-      font-size: 2em;
-      color: #d33682;
+      font-size: 2.2em;
+      background-color: rgba(0,0,0,0.6);
+      padding: 10px;
+      display: inline-block;
+      animation: slideIn 1s ease-out;
     }
+
     button {
-      padding: 10px 20px;
+      padding: 12px 25px;
       font-size: 1.1em;
-      background-color: #268bd2;
+      background-color: #d33682;
       color: #fff;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-    }
-    button:hover {
-      background-color: #2aa198;
-    }
-    #frase {
       margin-top: 20px;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #b2276a;
+    }
+
+    button:active {
+      transform: scale(1.05);
+    }
+
+    #frase {
+      margin-top: 25px;
       font-style: italic;
       font-size: 1.2em;
+      min-height: 50px;
+      background-color: rgba(0,0,0,0.5);
+      display: inline-block;
+      padding: 10px;
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateY(-50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <h1>🎰 Ludopapp</h1>
-  <p>Clicca il bottone per tentare la fortuna!</p>
+  <h1>🧾 Ludopapp</h1>
+  <p style="margin-top: 10px;">Clicca il bottone per tentare la fortuna!</p>
   <button onclick="generaFrase()">Proviamo a fare 13?</button>
   <div id="frase">💬 Qui comparirà la saggezza del bar...</div>
 
@@ -50,9 +76,31 @@
       "Nun se sa mai, magari oggi è ‘o juorno bbuono"
     ];
 
+    let counter = 0;
+
     function generaFrase() {
       const casuale = frasi[Math.floor(Math.random() * frasi.length)];
-      document.getElementById("frase").innerText = "💬 " + casuale;
+      let i = 0;
+      const target = document.getElementById("frase");
+      target.innerText = "";
+
+      function typing() {
+        if (i < casuale.length) {
+          target.innerText += casuale.charAt(i);
+          i++;
+          setTimeout(typing, 40);
+        } else {
+          counter++;
+          if (counter === 5) {
+            setTimeout(() => {
+              target.innerText = "💬 Non hai vinto ma hai speso meno che al bar 🍻";
+            }, 1000);
+            counter = 0;
+          }
+        }
+      }
+
+      typing();
     }
   </script>
 </body>
